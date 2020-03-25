@@ -42,6 +42,7 @@ UPLOAD_LARGE_CHUNK_SIZE = 20000000
 
 
 def upload(file, **options):
+    file.seek(0) # fix to prevent empty_file error when uploading
     params = utils.build_upload_params(**options)
     return call_cacheable_api("upload", params, file=file, **options)
 
